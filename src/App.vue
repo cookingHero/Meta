@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>Let go start</div>
+    <router-view></router-view>
 </template>
 
 <style>
