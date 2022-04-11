@@ -1,23 +1,21 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { header } from './header'
+import { bottom } from './bottom'
 
-const commonIns = () => import('../components/common/index.vue')
+const routePath = [
+    ...header,
+    ...bottom
+]
 
-const routePath: Array<RouteRecordRaw> = [
-    {
-        path: "/",
-        name: "page",
-        component: commonIns,
-    },
-    {
-        path: "/nav",
-        name: "nav",
-        component: commonIns
-    }
-];
-
-const route = createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes: routePath
 })
 
-export default route
+router.beforeEach((to, from) => {
+    if (to.meta.isLogin) {
+        console.log('this need check login')
+    }
+})
+
+export default router
